@@ -74,7 +74,7 @@ export const room = pgTable("room", {
     .references(() => users.id, { onDelete: "cascade" }), // onDelete Mean That When User Delete His Account All His Rooms Will Be Deleted
   name: text("name").notNull(),
   description: text("description"),
-  language: text("language").notNull(),
+  tags: text("tags").notNull(),
   githubRepo: text("githubRepo"),
 });
 
