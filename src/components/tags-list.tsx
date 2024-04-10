@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { badgeVariants } from "./badge";
+import { badgeVariants } from "./ui/badge";
 import { cn } from "@/lib/utils";
 
 export const TagsList = ({ tags }: { tags: string[] }) => {
