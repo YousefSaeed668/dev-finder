@@ -7,12 +7,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { TagsList, splitTags } from "@/components/ui/tags-list";
+import { TagsList } from "@/components/ui/tags-list";
 import { getRooms } from "@/data-access/rooms";
 import { Room } from "@/db/schema";
 import { GithubIcon } from "lucide-react";
 import Link from "next/link";
 import { SearchBar } from "./search-bar";
+import { splitTags } from "@/lib/utils";
 function RoomCard({ room }: { room: Room }) {
   return (
     <Card>

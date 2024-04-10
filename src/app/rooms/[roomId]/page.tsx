@@ -1,9 +1,10 @@
 import { Badge } from "@/components/ui/badge";
-import { TagsList, splitTags } from "@/components/ui/tags-list";
+import { TagsList } from "@/components/ui/tags-list";
 import { getRoom } from "@/data-access/rooms";
 import { GithubIcon, Tags } from "lucide-react";
 import Link from "next/link";
 import { DevFinderVideo } from "./video-player";
+import { splitTags } from "@/lib/utils";
 
 const RoomPage = async (props: { params: { roomId: string } }) => {
   const roomId = props.params.roomId;
