@@ -14,8 +14,6 @@ import Image from "next/image";
 import Link from "next/link";
 function AccountDropDown() {
   const session = useSession();
-  const isLoggedIn = !!session.data;
-  console.log(session.data?.user?.image);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -29,17 +27,17 @@ function AccountDropDown() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        {isLoggedIn ? (
-          <DropdownMenuItem onClick={() => signOut()}>
-            <LogOutIcon className="mr-2" />
-            Sign Out
-          </DropdownMenuItem>
-        ) : (
-          <DropdownMenuItem onClick={() => signIn("google")}>
-            <LogInIcon className="mr-2" />
-            Sign In
-          </DropdownMenuItem>
-        )}
+        <DropdownMenuItem
+          onClick={() =>
+            signOut({
+              callbackUrl: "/",
+            })
+          }
+        >
+          <LogOutIcon className="mr-2" />
+          Sign Out
+        </DropdownMenuItem>
+
         <DropdownMenuItem>Profile</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
@@ -60,7 +58,13 @@ export const Header = () => {
           </Link>
         </div>
         <div className="flex items-center gap-4">
-          <AccountDropDown />
+          {session.data && <AccountDropDown />}
+          {!session.data && (
+            <Button variant="link" onClick={() => signIn("google")}>
+              <LogInIcon className="mr-2" />
+              Sign In
+            </Button>
+          )}
           <ModeToggle />
         </div>
       </div>
