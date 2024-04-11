@@ -39,7 +39,7 @@ export function SearchBar() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     if (values.search) {
-      router.push(`/?search=${values.search}`);
+      router.push(`browse/?search=${values.search}`);
     } else {
       router.push("/");
     }
@@ -47,7 +47,10 @@ export function SearchBar() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex gap-2">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex gap-2 flex-wrap"
+      >
         <FormField
           control={form.control}
           name="search"
@@ -56,7 +59,7 @@ export function SearchBar() {
               <FormControl>
                 <Input
                   {...field}
-                  className="w-[440px]"
+                  className=" max-[450px]:w-[260px] w-[300px] sm:w-[340px] md:w-[380px] lg:w-[440px] "
                   placeholder="Filter rooms by keywords, such as typescript, next.js, python"
                 />
               </FormControl>
@@ -71,10 +74,11 @@ export function SearchBar() {
 
         {query.get("search") && (
           <Button
+            type="reset"
             variant="link"
             onClick={() => {
               form.setValue("search", "");
-              router.push("/");
+              router.push("/browse");
             }}
           >
             Clear

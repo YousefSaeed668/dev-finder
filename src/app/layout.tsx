@@ -24,7 +24,7 @@ export default function RootLayout({
         <Providers>
           <NextTopLoader showSpinner={false} />
           <Header />
-          <div className="container mx-auto">{children}</div>
+          <div className="container px-4 lg:p-16 mx-auto">{children}</div>
           <Toaster />
         </Providers>
       </body>

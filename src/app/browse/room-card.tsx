@@ -18,7 +18,9 @@ export function RoomCard({ room }: { room: Room }) {
     <Card>
       <CardHeader>
         <CardTitle>{room.name}</CardTitle>
-        <CardDescription>{room.description}</CardDescription>
+        <CardDescription className="h-[100px] overflow-hidden">
+          <div className="line-clamp-5  mt-3">{room.description}</div>
+        </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
         <TagsList tags={splitTags(room.tags)} />

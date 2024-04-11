@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { DeleteIcon, LogInIcon, LogOutIcon } from "lucide-react";
+import { DeleteIcon, LogInIcon, LogOutIcon, Menu } from "lucide-react";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useState } from "react";
 import { deleteAccountAction } from "./actions";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 function AccountDropdown() {
   const session = useSession();
@@ -63,8 +64,7 @@ function AccountDropdown() {
               <AvatarImage src={session.data?.user?.image ?? ""} />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
-
-            {session.data?.user?.name}
+            <span className="hidden sm:inline">{session.data?.user?.name}</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
@@ -96,22 +96,23 @@ export function Header() {
   const isLoggedIn = !!session.data;
 
   return (
-    <header className="py-2 z-10 backdrop-blur-md border-b-orange-300 shadow-md dark:drop-shadow-2xl sticky top-0 left-0">
-      <div className="container mx-auto flex justify-between items-center">
+    <header className="py-2 z-10 backdrop-blur-md border-b-orange-300 shadow-md dark:drop-shadow-2xl sticky top-0 left-0 w-full">
+      <div className="container mx-auto px-3 flex justify-between items-center">
         <Link
           href="/"
-          className="flex gap-2 items-center text-xl hover:underline"
+          className="flex gap-2 items-center text-lg sm:text-xl hover:underline"
         >
-          <Image
-            src="/icon.png"
-            width="60"
-            height="60"
-            alt="the application icon of a magnifying glass"
-          />
+          <div className="relative w-[40px] h-[40px] sm:w-[60px] sm:h-[60px]">
+            <Image
+              fill
+              src="/icon.png"
+              alt="the application icon of a magnifying glass"
+            />
+          </div>
           DevFinder
         </Link>
 
-        <nav className="flex gap-8">
+        <nav className="flex gap-4 sm:gap-8 max-[450px]:hidden">
           {isLoggedIn && (
             <>
               <Link className="hover:underline" href="/browse">
@@ -124,11 +125,35 @@ export function Header() {
             </>
           )}
         </nav>
+        {isLoggedIn && (
+          <DropdownMenu>
+            <DropdownMenuTrigger className="min-[450px]:hidden">
+              <Menu />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem>
+                <Link className="hover:underline" href="/browse">
+                  Browse
+                </Link>
+              </DropdownMenuItem>
 
-        <div className="flex items-center gap-4">
+              <DropdownMenuItem>
+                <Link className="hover:underline" href="/your-rooms">
+                  Your Rooms
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
+
+        <div className="flex items-center">
           {isLoggedIn && <AccountDropdown />}
           {!isLoggedIn && (
-            <Button onClick={() => signIn()} variant="link">
+            <Button
+              className="w-fit p-0"
+              onClick={() => signIn()}
+              variant="link"
+            >
               <LogInIcon className="mr-2" /> Sign In
             </Button>
           )}

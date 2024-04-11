@@ -2,7 +2,6 @@ import { db } from "@/db";
 import { Room, room } from "@/db/schema";
 import { getSession } from "@/lib/auth";
 import { eq, like } from "drizzle-orm";
-import { unstable_noStore } from "next/cache";
 
 export async function getRooms(search: string | undefined) {
   const where = search ? like(room.tags, `%${search}%`) : undefined;

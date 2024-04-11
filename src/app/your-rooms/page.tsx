@@ -10,15 +10,15 @@ export default async function YourRoomsPage() {
   const rooms = await getUserRooms();
 
   return (
-    <main className="min-h-screen p-16">
-      <div className="flex justify-between items-center mb-8">
+    <main className="min-h-screen py-8 px-4 lg:p-16">
+      <div className="flex justify-between items-center mb-8 flex-wrap gap-3">
         <h1 className="text-4xl">Your Rooms</h1>
         <Button asChild>
           <Link href="/create-room">Create Room</Link>
         </Button>
       </div>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {rooms.map((room) => {
           return <UserRoomCard key={room.id} room={room} />;
         })}

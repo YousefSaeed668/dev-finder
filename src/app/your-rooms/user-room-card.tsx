@@ -36,7 +36,9 @@ export function UserRoomCard({ room }: { room: Room }) {
           </Link>
         </Button>
         <CardTitle>{room.name}</CardTitle>
-        <CardDescription>{room.description}</CardDescription>
+        <CardDescription className="h-[100px]  overflow-hidden">
+          <div className="line-clamp-5 mt-3">{room.description}</div>
+        </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
         <TagsList tags={splitTags(room.tags)} />
@@ -52,7 +54,7 @@ export function UserRoomCard({ room }: { room: Room }) {
           </Link>
         )}
       </CardContent>
-      <CardFooter className="flex gap-2">
+      <CardFooter className="flex gap-2 flex-wrap">
         <Button asChild>
           <Link href={`/rooms/${room.id}`}>Join Room</Link>
         </Button>

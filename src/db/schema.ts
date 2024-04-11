@@ -74,4 +74,6 @@ export const room = pgTable("room", {
   githubRepo: text("githubRepo"),
 });
 
-export type Room = typeof room.$inferSelect;
+export type Room = Omit<typeof room.$inferSelect, "githubRepo"> & {
+  githubRepo?: (typeof room.$inferSelect)["githubRepo"];
+};
