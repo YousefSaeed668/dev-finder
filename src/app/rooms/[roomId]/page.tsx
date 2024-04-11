@@ -16,13 +16,13 @@ const RoomPage = async (props: { params: { roomId: string } }) => {
     return <div>No Room Of This ID Found</div>;
   }
   return (
-    <div className="grid grid-cols-4 min-h-screen">
-      <div className="col-span-3 p-4 pr-2">
+    <div className="grid lg:grid-cols-4 min-h-screen">
+      <div className="lg:col-span-3 lg:p-4 pr-2">
         <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-4">
           <DevFinderVideo room={room} />
         </div>
       </div>
-      <div className="  col-span-1 p-4 pl-2">
+      <div className=" lg:col-span-1 lg:p-4 pl-2">
         <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-4 flex flex-col gap-4">
           <h1 className="text-base">{room.name}</h1>
           {room.githubRepo && (
