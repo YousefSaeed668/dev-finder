@@ -16,7 +16,7 @@ const RoomPage = async (props: { params: { roomId: string } }) => {
     return <div>No Room Of This ID Found</div>;
   }
   return (
-    <div className="grid lg:grid-cols-4 min-h-screen">
+    <div className="grid lg:grid-cols-4 min-h-screen overflow-auto">
       <div className="lg:col-span-3 lg:p-4 pr-2">
         <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-4">
           <DevFinderVideo room={room} />
