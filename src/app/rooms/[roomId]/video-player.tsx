@@ -57,7 +57,7 @@ export function DevFinderVideo({ room }: { room: Room }) {
     client &&
     call && (
       <StreamVideo client={client}>
-        <StreamTheme>
+        <StreamTheme className="max-w-full">
           <StreamCall call={call}>
             <SpeakerLayout />
             <CallControls
